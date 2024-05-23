@@ -1,3 +1,7 @@
+*{
+    font-family: "Source sans 3", serif;
+    font-weight: 320;
+} 
 body{
     background-image: url(../img/image.png);
     background-repeat: no-repeat;
@@ -17,6 +21,7 @@ body{
 .register-container h1 {
     margin-bottom: 20px;
     text-align: center;
+    font-weight: 400;
 }
 .register-container label {
     display: block;
@@ -73,7 +78,18 @@ footer{
     text-align: center;
     color: #fff;
 }
+.footer a{
+    color: #fff;
+}
 footer a:hover{
     color: #0213ff;
     text-decoration: underline;
+}
+.role-container{
+    display: flex;
+    flex-direction: row;
+    
+}
+#role{
+    margin-left: 10px;
 }

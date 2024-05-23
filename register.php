@@ -5,10 +5,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $role = $_POST['role'] ?? 'student';
 
-    $sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $name, $email, $password);
+    $stmt->bind_param("ssss", $name, $email, $password, $role);
 
     if ($stmt->execute()) {
         header("Location: index.php");
@@ -27,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/register.css">
 </head>
 <body>
@@ -41,6 +43,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <br>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
+        <br>
+        <div class="role-container">
+        <label for="role">Role:</label>
+        <select id="role" name="role">
+            <option value="student">Student</option>
+            <option value="instructor">Instructor</option>
+            <option value="admin">Admin</option>
+        </select>
+        </div>
         <br>
         <button type="submit">Register</button>
     </form>
